@@ -3,6 +3,7 @@
 #March 28, 2023
 
 library(tidyverse)
+library(readxl)
 library(lubridate)
 library(RColorBrewer)
 #Identify up and down
@@ -16,21 +17,30 @@ library(RColorBrewer)
 #January_2022[1:which.max(January_2022$`Depth (Meter)`),]$Cast="Down"
 #
 
+January_2022 <- read_excel("January_2022.xlsx")
+February_2022 <- read_excel("February_2022.xlsx")
+March_2022 <- read_excel("March_2022.xlsx")
+April_2022 <- read_excel("April_2022.xlsx")
+May_2022 <- read_excel("May_2022.xlsx")
+June_2022 <- read_excel("June_2022.xlsx")
+July_2022 <- read_excel("July_2022.xlsx")
+August_2022 <- read_excel("August_2022.xlsx")
+October_2022_I <- read_excel("October_2022_I.xlsx")
+October_2022_II <- read_excel("October_2022_II.xlsx")
+November_2022 <- read_excel("November_2022.xlsx")
+December_2022 <- read_excel("December_2022.xlsx")
+
 
 ###############################
 BMPP_2022_Data = rbind(January_2022,February_2022,March_2022,April_2022,May_2022,June_2022,July_2022,August_2022,October_2022_I, October_2022_II, November_2022, December_2022)
 view(BMPP_2022_Data)
-str(BMPP_2022_Data)
-str(BMPP_2022_df)
+
 
 BMPP_2022_df = BMPP_2022_Data %>% 
   rename(Date_BMPP = Date) %>% 
   mutate(Date_BMPP = as.Date(Date_BMPP)) %>% 
   separate(Date_BMPP,c("year", "month", "day")) %>% 
   mutate(year = as.numeric(year), month = as.numeric(month), day = as.numeric(day))
-
-
-
 
 BMPP_2022_df
 
