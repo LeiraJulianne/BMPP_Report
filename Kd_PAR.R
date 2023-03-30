@@ -2,6 +2,9 @@
 
 library(tidyverse)
 
+PAR <- read_excel("~/Documents/Project BMPP/R/Final Report 2022/PAR.xlsx")
+View(PAR)
+
 #1ero Funcion 
 
 Kd_Cal=function(z1,z2,E1,E2) {
@@ -12,6 +15,8 @@ Kd_Cal=function(z1,z2,E1,E2) {
 }
 
 # 2do identificar los valores (z1,z2 ect. y crear columna de kd )
+
+#####PLOT
 Kd_PAR = PAR %>% 
   mutate(Kd=Kd_Cal(First_meter,Second_meter,Underwater_First,Underwater_Second))
 
@@ -20,13 +25,15 @@ Kd_=Kd_PAR %>%
   geom_point(alpha = 0.7)+
   geom_line(alpha = 0.5)+
   theme_classic()+
+  scale_color_brewer(palette="Set3")+
   scale_x_continuous(breaks = c(0:12))
 
 Kd_
 
+
+#####################3
 view(Kd_PAR)
 
-#Plot
 
 Kd_PAR %>% 
   ggplot(aes(x = Month, y = Kd, color = Station))+

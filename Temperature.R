@@ -76,9 +76,11 @@ temp_out_in = BMPP_2022_df %>%
   geom_ribbon(aes(x = month, y = Mean_temp, ymin = ymin, ymax = ymax, fill = Station), alpha = 0.15)+
   theme_classic()+
   scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  scale_y_continuous(breaks = c(25:31))+
   scale_color_brewer(palette="Dark2")+
   scale_fill_brewer(palette="Dark2")+
-  labs(x = "Months", y = "Mean Temperature (°C)")
+  labs(x = "Months", y = "Mean Temperature (°C)", title = "A)")+
+  theme(legend.position = "none") 
 
 temp_out_in
 
@@ -90,15 +92,18 @@ temp_all_sites = BMPP_2022_df %>%
   ggplot()+
   geom_point(aes(x = month, y = Mean_temp,color = Station))+
   geom_line(aes(x = month, y = Mean_temp,color = Station))+
-  geom_ribbon(aes(x = month, y = Mean_temp, ymin = ymin, ymax = ymax, fill = Station), alpha = 0.15)+
+  geom_ribbon(aes(x = month, y = Mean_temp, ymin = ymin, ymax = ymax, fill = Station), alpha = 0.06)+
   theme_classic()+
   scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9,10,11,12))+
+  scale_y_continuous(breaks = c(25:32.2))+
   scale_color_brewer(palette="Set3")+
   scale_fill_brewer(palette="Set3")+
-  labs(x = "Months", y = "Mean Temperature (°C)")
-
+  labs(x = "Months", y = "Mean Temperature (°C)", title = "A)")+
+  theme(legend.position = "none") 
+ 
 
 temp_all_sites
+
 
 highlight_in_out =  BMPP_2022_df %>% 
   group_by(month, Station) %>% 
@@ -111,7 +116,11 @@ highlight_in_out =  BMPP_2022_df %>%
   theme_classic()+
   scale_x_continuous(breaks = c(1,2,3,4,5,6,7,8,9,10,11,12))+
   scale_color_manual(values = c("grey", "grey", "grey","grey","grey","grey","grey","Red", "blue"))+
-  labs(x = "Months", y = "Mean Temperature (°C)")
+  scale_y_continuous(breaks = c(25:32))+
+  labs(x = "Months", y = "Mean Temperature (°C)", title = "A)")+
+  theme(legend.position = "none") 
+
+
 
 highlight_in_out
 
@@ -121,7 +130,8 @@ highlight_in_out
 
 
 
-#######################
+
+###################################################
 In_out_df = BMPP_2022_df %>% 
   #filter(`Depth (Meter)`<1) %>% 
   filter(Station=="Intake"|Station=="Outfall") %>% 
